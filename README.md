@@ -35,7 +35,25 @@ terrestrial).
 The results are as follows (rounded to three decimal places):
 Model 1: 0.760
 Model 2: 0.791
-Model 3: Loss: 0.3671, Accuracy: 0.764
+Model 3: Loss: 0.367, Accuracy: 0.764
 
 We see that with the data selected, the Support vector machine model performed the best at 79.1% accuracy, while the LinearRegression and Deep Learning models
 did worse, at 76% accuracy.
+
+I decided to try running the models again, this time only focusing only on the KOI flag data and nothing else. Each model was run again, with the following results:
+
+Model 1: 0.747
+Model 2: 0.747
+Model 3: Loss: 0.367, Accuracy: 0.764
+
+Dropping a column of data from the fit leads to a worse accuracy in both the Logistical and SVC model, while the deep learning model performed the same. Dropping data didn't result in anything new, so I decided to add back in a fifth column: this time, koi_teq, the approximate tempearture of the planet in Kelvins. I was interested in seeing how my models would stand up to extreme condition planets: for example, hot Jupiters, gas giants that orbited far closer to the sun than predicted before their discovery a few years ago. Adding this data in, and running the models for the last time, the results were:
+
+Model 1: 0.755
+Model 2: 0.649
+Model 3: Loss: 0.364, Accuracy: 0.773
+
+Model 1 does better than the second attempt, though still slightly worse than the first run. Model 2 has a relatively precipitous drop, hovering around 65% accuracy. The third model does better than the previous two attempts, at 77% accuracy.
+
+Would any of these models be a good tool at predicting exoplanets based on Kepler data? With the exception of the second run of the SVC model, they all had accuracy values slightly below or above 75%. These would be decent "first-attempt" models, but I would not try and publish the results (especially without more scientific rigor). What could I do to make the results better, given more time? Now that I have tried different fits, the next step would be to use the same models, but start tuning the parameters instead. What happens when I add (or remove) more nodes in the deep learning model? What if I change the parameters of the gridsearchCV in the Logistical model? What if I use a different kernel in the SVC model, and/or change the gridsearchCV parameters as well?
+
+I plan to explore these avenues on my own time. I would feel I reached a satisfactory completion if I were to obtain scores on any (or all) of the models above 96%. Part of the fun of learning ML is figuring out the best methods by trial-and-error. I will do a bit of study/research, but I will also just play around and see what works best. 
